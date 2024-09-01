@@ -18,7 +18,25 @@
     border-radius: 10px;
 }
 
+.scroll{
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+}
+
+.scroll::-webkit-scrollbar{
+    display: none;
+}
+
+.koper{
+    width: 50rem;
+}
+
 @media screen and (max-width: 800px) {
+    .koper{
+        width: 100%;
+    }
+
     .gmbar{
         width: 100%;
     }
