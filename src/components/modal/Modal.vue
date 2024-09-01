@@ -9,6 +9,12 @@ const modal = ref(null);
 
 const selectedFiles = ref([]);
 
+const judul = ref('');
+const deskripsi = ref('');
+const potoDesc = ref('');
+const potoSrc = ref('');
+const author = ref('');
+
 const handleFileChange = (event) => {
   selectedFiles.value = event.target.files;
 };
@@ -32,12 +38,12 @@ onClickOutside(modal, () => (isModal.value=false));
           <button @click="isModal = false" class="close-btn">x</button>
           <div class="col">
             <label for="">Judul Kegiatan</label>
-            <input type="text" class="txt" name="title" placeholder="judul kegiatan">
+            <input type="text" v-model="judul" class="txt" name="title" placeholder="judul kegiatan">
           </div>
 
           <div class="col">
             <label for="">Deskripsi</label>
-            <textarea id="form1" placeholder="deskripsi kegiatan" class="txt-f"></textarea>
+            <textarea id="form1" v-model="deskripsi" placeholder="deskripsi kegiatan" class="txt-f"></textarea>
           </div>
 
           <div class="col">
@@ -47,17 +53,17 @@ onClickOutside(modal, () => (isModal.value=false));
 
           <div class="col">
             <label for="">Deskripsi Foto</label>
-            <input type="text" class="txt" placeholder="deskripsi foto">
+            <input type="text" v-model="potoDesc" class="txt" placeholder="deskripsi foto">
           </div>
 
           <div class="col">
             <label for="">Sumber/Lokasi Foto</label>
-            <input type="text" class="txt" placeholder="sumber foto">
+            <input type="text" v-model="potoSrc" class="txt" placeholder="sumber foto">
           </div>
 
           <div class="col">
             <label for="">Author</label>
-            <input type="text" class="txt" placeholder="author">
+            <input type="text" v-model="author" class="txt" placeholder="author">
           </div>
           <br>
 

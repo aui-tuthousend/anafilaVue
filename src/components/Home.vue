@@ -67,40 +67,40 @@ const scrollRight = () => {
           <div class="coverr">
             <img src="" alt="" class="img program">
           </div>
-          <h1 style="width: 230px;">dsasdasda</h1>
-          <p>sadads</p>
+          <h1 style="width: 230px;">Beasiswa Pendidikan</h1>
+          <p>Diberikan untuk membantu anak-anak menyelesaikan pendidikan akademiknya mulai dari jenjang TK hingga SMA.</p>
         </div>
 
         <div class="block col">
           <div class="coverr">
             <img src="" alt="" class="img program">
           </div>
-          <h1 style="width: 230px;">dsasdasda</h1>
-          <p>sadads</p>
+          <h1 style="width: 230px;">Pendidikan Al-Qur'an</h1>
+          <p>Mendirikan lembaga pendidikan Al Qur'an mulai dari TPQ di sore hari hingga kelas tahfidz setiap selesai shalat subuh. Awal tahun 2024 juga telah dibuka kelas TPQ dewasa yang dilaksanakan setiap sepekan sekali.</p>
         </div>
 
         <div class="block col">
           <div class="coverr">
             <img src="" alt="" class="img program">
           </div>
-          <h1 style="width: 230px;">dsasdasda</h1>
-          <p>sadads</p>
+          <h1 style="width: 230px;">Safari Dakwah</h1>
+          <p>Kajian subuh di mushollah dan masjid sekitar Pagesangan dengan menitikberatkan materi-materi tafsir surah Al Fatihah, fiqh, dan hadist.</p>
         </div>
 
         <div class="block col">
           <div class="coverr">
             <img src="" alt="" class="img program">
           </div>
-          <h1 style="width: 230px;">dsasdasda</h1>
-          <p>sadads</p>
+          <h1 style="width: 230px;">Kampung Aji</h1>
+          <p>Program dakwah di kampung kampung guna mengentaskan buta huruf Al-Qur'an dan memberikan pemahaman keagamaan di kalangan mustahik.</p>
         </div>
 
         <div class="block col">
           <div class="coverr">
             <img src="" alt="" class="img program">
           </div>
-          <h1 style="width: 230px;">dsasdasda</h1>
-          <p>sadads</p>
+          <h1 style="width: 230px;">Pengkaderan Guru Al-Qur'an</h1>
+          <p>Pendidikan guru Al Qur'an dengan menggunakan metode Ummi hingga mendapatkan syahadah untuk mengajar ngaji.</p>
         </div>
 
       </div>
@@ -149,6 +149,52 @@ const scrollRight = () => {
         <img src="../images/mitra/ydsf.png" alt="" class="pt">
         <img src="../images/mitra/mig.png" alt="" class="pt">
       </div>
+    </div>
+  </div>
+
+<!--  kegiataaaaann -->
+
+  <div class="c3 col" id="Program">
+    <h1>Kegiatan Terbaru Kami</h1>
+    <p>Alhamdulillah telah terlaksana berbagai kegiatan keagamaan maupun sosial sebagai wujud bukti amanah kami</p>
+    <div class="row-sb-c">
+      <button @click="scrollLeft" class="scroll-btn left-btn">&larr;</button>
+      <div class="c3-1" ref="scrollContainer">
+
+        <div class="block col">
+          <div class="coverr">
+            <img src="" alt="" class="img program">
+          </div>
+          <h3 style="width: 230px; font-weight: bold;">Romadhon Camp di yayasan annafilah</h3>
+          <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
+        </div>
+
+        <div class="block col">
+          <div class="coverr">
+            <img src="" alt="" class="img program">
+          </div>
+          <h3 style="width: 230px; font-weight: bold;">Kampung dakwah di desa terpencil</h3>
+          <p>acara bulanan kami selalu atau awal bulan...</p>
+        </div>
+
+        <div class="block col">
+          <div class="coverr">
+            <img src="" alt="" class="img program">
+          </div>
+          <h3 style="width: 230px; font-weight: bold;">Tasmi' Qur'an 30 juz</h3>
+          <p>salah satu anak didik kami si fulan alhamdulilah telah mengkhatamkan...</p>
+        </div>
+
+        <div class="block col">
+          <div class="coverr">
+            <img src="" alt="" class="img program">
+          </div>
+          <h3 style="width: 230px; font-weight: bold;">Beasiswa untuk si kecil</h3>
+          <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
+        </div>
+
+      </div>
+      <button @click="scrollRight" class="scroll-btn right-btn">&rarr;</button>
     </div>
   </div>
 
