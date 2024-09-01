@@ -2,7 +2,7 @@
 
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import Article from "@/components/Article.vue";
+import Article from "@/components/article/Article.vue";
 
 document.title="Baca Artikel Terbaru"
 </script>

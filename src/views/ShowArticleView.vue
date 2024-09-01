@@ -1,19 +1,16 @@
 <script setup>
 
 import Header from "@/components/Header.vue";
+import ShowArticle from "@/components/article/ShowArticle.vue";
 import Footer from "@/components/Footer.vue";
-import Galeri from "@/components/post/Galeri.vue";
-
-document.title="Galeri Kegiatan"
-
 </script>
 
 <template>
-<main>
-  <Header/>
-  <Galeri/>
-  <Footer/>
-</main>
+  <main>
+    <Header/>
+    <ShowArticle/>
+    <Footer/>
+  </main>
 </template>
 
 <style scoped>

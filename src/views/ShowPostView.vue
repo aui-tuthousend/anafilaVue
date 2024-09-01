@@ -1,17 +1,14 @@
 <script setup>
 
+import ShowPost from "@/components/post/ShowPost.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import Galeri from "@/components/post/Galeri.vue";
-
-document.title="Galeri Kegiatan"
-
 </script>
 
 <template>
 <main>
   <Header/>
-  <Galeri/>
+  <ShowPost/>
   <Footer/>
 </main>
 </template>
