@@ -7,6 +7,13 @@ const isModal = ref(false);
 const modal = ref(null);
 
 const selectedFile = ref([]);
+
+const judul = ref('');
+const kategori = ref('');
+const deskripsi = ref('');
+const potoDesc = ref('');
+const potoSrc = ref('');
+const author = ref('');
 const handleFileChange = (event) => {
   selectedFile.value = event.target.files[0];
 };
@@ -18,6 +25,27 @@ watch(escape, (v) =>{
 })
 
 onClickOutside(modal, () => (isModal.value=false));
+
+const submit = async () => {
+  const formData = new FormData();
+  const data = {title: judul.value, kategori: kategori.value, desc: deskripsi.value, potoDesc: potoDesc.value, potoSrc: potoSrc.value};
+
+  formData.append("image", selectedFile.value);
+
+  try {
+    const response = await axios.post("/api/uploadPost", {
+      pics: formData,
+      data: data
+    }, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.error("There was an error uploading the images!", error);
+  }
+}
 </script>
 
 <template>
@@ -30,12 +58,12 @@ onClickOutside(modal, () => (isModal.value=false));
           <button @click="isModal = false" class="close-btn">X</button>
           <div class="col">
             <label for="">Judul Artikel</label>
-            <input type="text" class="txt" name="title" placeholder="judul artikel">
+            <input type="text" v-model="judul" class="txt" name="title" placeholder="judul artikel">
           </div>
 
           <div class="col">
             <label for="kategori">Kategori Artikel</label>
-            <select id="kategori" class="sel">
+            <select id="kategori" class="sel" v-model="kategori">
               <option>Teknologi</option>
               <option>Agama</option>
               <option>Lifestyle</option>
@@ -44,7 +72,7 @@ onClickOutside(modal, () => (isModal.value=false));
 
           <div class="col">
             <label for="">Deskripsi</label>
-            <textarea id="form1" placeholder="deskripsi artikel" class="txt-f"></textarea>
+            <textarea id="form1" v-model="deskripsi" placeholder="deskripsi artikel" class="txt-f"></textarea>
           </div>
 
           <div class="col">
@@ -54,16 +82,16 @@ onClickOutside(modal, () => (isModal.value=false));
 
           <div class="col">
             <label for="">Deskripsi Foto</label>
-            <input type="text" class="txt" placeholder="deskripsi foto">
+            <input type="text" v-model="potoDesc" class="txt" placeholder="deskripsi foto">
           </div>
 
           <div class="col">
             <label for="">Sumber/Lokasi Foto</label>
-            <input type="text" class="txt" placeholder="sumber foto">
+            <input type="text" v-model="potoSrc" class="txt" placeholder="sumber foto">
           </div>
           <br>
 
-          <button class="but">
+          <button class="but" @click="submit">
             <h4>Submit</h4>
           </button>
         </div>

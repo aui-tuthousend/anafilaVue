@@ -162,19 +162,23 @@ const scrollRight = () => {
       <div class="c3-1" ref="scrollContainer">
 
         <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h3 style="width: 230px; font-weight: bold;">Romadhon Camp di yayasan annafilah</h3>
-          <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
+          <router-link to="/read/slug" class="no-hover">
+            <div class="coverr">
+              <img src="" alt="" class="img program">
+            </div>
+            <h3 style="width: 230px; font-weight: bold;">Romadhon Camp di yayasan annafilah</h3>
+            <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
+          </router-link>
         </div>
 
         <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h3 style="width: 230px; font-weight: bold;">Kampung dakwah di desa terpencil</h3>
-          <p>acara bulanan kami selalu atau awal bulan...</p>
+          <router-link to="/read/slug" class="no-hover">
+            <div class="coverr">
+              <img src="" alt="" class="img program">
+            </div>
+            <h3 style="width: 230px; font-weight: bold;">Kampung dakwah di desa terpencil</h3>
+            <p>acara bulanan kami selalu atau awal bulan...</p>
+          </router-link>
         </div>
 
         <div class="block col">
@@ -248,7 +252,7 @@ const scrollRight = () => {
       <br>
       <p>"Sedekah itu dapat memadamkan kesalahan, sebagaimana sebongkah es yang meleleh di atas batu karang” <br>(HR. Ibnu Hibban No. 5567. Hadis sahih)</p>
     </div>
-    <form action="/createDonatur" method="POST" enctype="multipart/form-data" class="form col">
+    <div class="form col">
       <div class="col">
         <label for="">Nama</label>
         <input type="text" class="txt" name="nama" placeholder="Nama anda">
@@ -273,7 +277,70 @@ const scrollRight = () => {
           <h4>Daftar</h4>
         </button>
       </div>
-    </form>
+    </div>
+  </div>
+
+  <div class="c3 col" id="Program">
+    <h1 style="text-align:center; margin-bottom: 2rem;">Jangan Lewatkan Artikel Kami</h1>
+    <div class="row-sb-c">
+      <button @click="scrollLeft" class="scroll-btn left-btn">&larr;</button>
+      <div class="c3-1" ref="scrollContainer">
+
+        <div class="block col">
+          <router-link to="/read/slug" class="no-hover">
+            <div class="coverr">
+              <img src="" alt="" class="img program">
+            </div>
+            <h3 style="width: 230px; font-weight: bold;">Romadhon Camp di yayasan annafilah</h3>
+            <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
+          </router-link>
+        </div>
+
+        <div class="block col">
+          <router-link to="/read/slug" class="no-hover">
+            <div class="coverr">
+              <img src="" alt="" class="img program">
+            </div>
+            <h3 style="width: 230px; font-weight: bold;">Kampung dakwah di desa terpencil</h3>
+            <p>acara bulanan kami selalu atau awal bulan...</p>
+          </router-link>
+        </div>
+
+        <div class="block col">
+          <div class="coverr">
+            <img src="" alt="" class="img program">
+          </div>
+          <h3 style="width: 230px; font-weight: bold;">Tasmi' Qur'an 30 juz</h3>
+          <p>salah satu anak didik kami si fulan alhamdulilah telah mengkhatamkan...</p>
+        </div>
+
+        <div class="block col">
+          <div class="coverr">
+            <img src="" alt="" class="img program">
+          </div>
+          <h3 style="width: 230px; font-weight: bold;">Beasiswa untuk si kecil</h3>
+          <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
+        </div>
+
+        <div class="block col">
+          <div class="coverr">
+            <img src="" alt="" class="img program">
+          </div>
+          <h3 style="width: 230px; font-weight: bold;">Beasiswa untuk si kecil</h3>
+          <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
+        </div>
+
+        <div class="block col">
+          <div class="coverr">
+            <img src="" alt="" class="img program">
+          </div>
+          <h3 style="width: 230px; font-weight: bold;">Beasiswa untuk si kecil</h3>
+          <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
+        </div>
+
+      </div>
+      <button @click="scrollRight" class="scroll-btn right-btn">&rarr;</button>
+    </div>
   </div>
 </template>
 

@@ -9,11 +9,11 @@ const modal = ref(null);
 
 const selectedFiles = ref([]);
 
-const judul = ref('');
-const deskripsi = ref('');
-const potoDesc = ref('');
-const potoSrc = ref('');
-const author = ref('');
+  const judul = ref('');
+  const deskripsi = ref('');
+  const potoDesc = ref('');
+  const potoSrc = ref('');
+  const author = ref('');
 
 const handleFileChange = (event) => {
   selectedFiles.value = event.target.files;
@@ -26,6 +26,29 @@ watch(escape, (v) =>{
 })
 
 onClickOutside(modal, () => (isModal.value=false));
+
+const submit = async () => {
+  const formData = new FormData();
+  const data = {title: judul.value, desc: deskripsi.value, potoDesc: potoDesc.value, potoSrc: potoSrc.value, author: author.value};
+
+  for (let i = 0; i < selectedFiles.value.length; i++) {
+    formData.append("images[]", selectedFiles.value[i]);
+  }
+
+  try {
+    const response = await axios.post("/api/uploadPost", {
+      pics: formData,
+      data: data
+    }, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    console.log(response.data);
+  } catch (error) {
+    console.error("There was an error uploading the images!", error);
+  }
+}
 </script>
 
 <template>
@@ -67,7 +90,7 @@ onClickOutside(modal, () => (isModal.value=false));
           </div>
           <br>
 
-          <button class="but">
+          <button class="but" @click="submit">
             <h4>Submit</h4>
           </button>
         </div>

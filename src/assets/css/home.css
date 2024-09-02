@@ -48,8 +48,8 @@
 
 
 .c3{
-    margin-top: 10rem;
-    padding: 0 10rem 0 11rem;
+    margin-top: 6rem;
+    padding: 2rem 10rem 0 11rem;
     width: 100vw;
     gap: 2rem;
     /*flex-wrap: wrap;*/
@@ -157,8 +157,8 @@
 }
 
 .pt, .ptt{
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 130px;
 }
 
 .c6{
@@ -194,8 +194,8 @@
 
 .c8{
     width: 100vw;
-    margin-top: 15rem;
-    padding: 0rem 10rem 0 11rem;
+    margin-top: 13rem;
+    padding: 2rem 10rem 0 11rem;
     /*height: 70rem;*/
 }
 
@@ -232,6 +232,7 @@
     border-radius: 10px;
     overflow: hidden;
 }
+
 
 @media (max-width: 800px) {
     .c2{
