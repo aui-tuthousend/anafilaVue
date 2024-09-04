@@ -2,19 +2,51 @@
 import '../../assets/css/viewartikel.css';
 import '../../assets/css/style.css';
 import '../../assets/css/template.css';
+import {ref, watchEffect} from "vue";
+import {useRoute} from "vue-router";
+
+
+const route = useRoute();
+const slug = ref(route.params.slug);
+
+const artikel = ref(null);
+const loading = ref(false);
+
+watchEffect( async ()=> {
+
+  try {
+    loading.value = true;
+    let response = await fetch(`http://127.0.0.1:8000/api/showArticle/${slug.value}`);
+    artikel.value = await response.json();
+    artikel.value.image_url = `http://127.0.0.1:8000${artikel.value.image_path}`;
+    console.log(artikel.value)
+  } catch (error) {
+    console.error('Error fetching article:', error);
+  }finally {
+    loading.value = false;
+  }
+})
+
+
 </script>
 
 <template>
-  <div class="A1 col">
+  <div v-if="loading">
+    Loading...
+  </div>
+  <div class="A1 col" v-if="artikel">
     <div>
-      <h1 class="tit">Titleee</h1>
+      <p>{{artikel.category}}</p>
+      <h1 class="tit">{{ artikel.title }}</h1>
       <br>
-      <img class="img gmbar" src="../../images/bsis.jpg">
-      <p style="margin-bottom: 1rem;">📷poto source </p>
-      <h4>oleh: author </h4>
-      <p style="margin-top: 5px;"> tnggal</p>
-      <p class="txt2">deskripsi</p>
+      <img class="img gmbar" :src="artikel.image_url" alt="Article Image">
+      <h4>oleh: author</h4>
+      <p style="margin-top: 5px;">tanggal</p>
+      <p class="txt2">{{ artikel.description }}</p>
     </div>
+  </div>
+  <div v-else>
+    <p>Loading...</p>
   </div>
 </template>
 

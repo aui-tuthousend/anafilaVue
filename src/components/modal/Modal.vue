@@ -29,15 +29,15 @@ onClickOutside(modal, () => (isModal.value=false));
 
 const submit = async () => {
   const formData = new FormData();
-  const data = {title: judul.value, desc: deskripsi.value, potoDesc: potoDesc.value, potoSrc: potoSrc.value, author: author.value};
+  const data = {title: judul.value, description: deskripsi.value, image_desc: potoDesc.value, image_src: potoSrc.value, author: author.value};
 
   for (let i = 0; i < selectedFiles.value.length; i++) {
     formData.append("images[]", selectedFiles.value[i]);
   }
 
   try {
-    const response = await axios.post("/api/uploadPost", {
-      pics: formData,
+    const response = await axios.post("http://127.0.0.1:8000/api/storePost", {
+      images: formData,
       data: data
     }, {
       headers: {

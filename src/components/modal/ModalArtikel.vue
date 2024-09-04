@@ -1,6 +1,7 @@
 <script setup>
 import {ref, watch} from "vue";
 import {onClickOutside, useMagicKeys} from "@vueuse/core";
+import router from "@/router/index.js";
 const {escape} = useMagicKeys()
 
 const isModal = ref(false);
@@ -28,24 +29,30 @@ onClickOutside(modal, () => (isModal.value=false));
 
 const submit = async () => {
   const formData = new FormData();
-  const data = {title: judul.value, kategori: kategori.value, desc: deskripsi.value, potoDesc: potoDesc.value, potoSrc: potoSrc.value};
 
+  // Adding each property individually to formData
+  formData.append("title", judul.value);
+  formData.append("category", kategori.value);
+  formData.append("description", deskripsi.value);
+  formData.append("image_desc", potoDesc.value);
+  formData.append("image_src", potoSrc.value);
   formData.append("image", selectedFile.value);
 
   try {
-    const response = await axios.post("/api/uploadPost", {
-      pics: formData,
-      data: data
-    }, {
+    const response = await axios.post("http://127.0.0.1:8000/api/storeArticle", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
     console.log(response.data);
   } catch (error) {
-    console.error("There was an error uploading the images!", error);
+    console.error("There was an error uploading the images!", error.response.data);
+  } finally {
+    router.push('/read');
+    isModal.value = false;
   }
-}
+};
+
 </script>
 
 <template>

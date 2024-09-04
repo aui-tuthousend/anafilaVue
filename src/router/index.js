@@ -37,7 +37,7 @@ const router = createRouter({
       },
     },
     {
-      path: '/read/slug',
+      path: '/read/:slug',
       name: 'ShowArticle',
       component: ShowArticleView,
       meta: {
