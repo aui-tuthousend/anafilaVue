@@ -48,8 +48,8 @@ const submit = async () => {
   } catch (error) {
     console.error("There was an error uploading the images!", error.response.data);
   } finally {
-    router.push('/read');
     isModal.value = false;
+    router.push('/read');
   }
 };
 

@@ -1,6 +1,7 @@
 <script setup>
 import {ref, watch} from "vue";
 import {onClickOutside, useMagicKeys} from "@vueuse/core";
+import router from "@/router/index.js";
 const {escape} = useMagicKeys()
 
 
@@ -29,24 +30,29 @@ onClickOutside(modal, () => (isModal.value=false));
 
 const submit = async () => {
   const formData = new FormData();
-  const data = {title: judul.value, description: deskripsi.value, image_desc: potoDesc.value, image_src: potoSrc.value, author: author.value};
+
+  formData.append('title', judul.value)
+  formData.append('description', deskripsi.value)
+  formData.append('image_desc', potoDesc.value)
+  formData.append('image_src', potoSrc.value)
+  formData.append('author', author.value)
 
   for (let i = 0; i < selectedFiles.value.length; i++) {
     formData.append("images[]", selectedFiles.value[i]);
   }
 
   try {
-    const response = await axios.post("http://127.0.0.1:8000/api/storePost", {
-      images: formData,
-      data: data
-    }, {
+    const response = await axios.post("http://127.0.0.1:8000/api/storePost", formData,    {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
     console.log(response.data);
   } catch (error) {
-    console.error("There was an error uploading the images!", error);
+    console.error("There was an error uploading the images!", error.response.data);
+  } finally {
+    isModal.value = false;
+    await router.push('/galeri');
   }
 }
 </script>

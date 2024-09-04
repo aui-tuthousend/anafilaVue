@@ -55,7 +55,7 @@ const router = createRouter({
       },
     },
     {
-      path: '/galeri/slug',
+      path: '/galeri/:slug',
       name: 'ShowGaleri',
       component: ShowPostView,
       meta: {

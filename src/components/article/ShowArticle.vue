@@ -2,9 +2,8 @@
 import '../../assets/css/viewartikel.css';
 import '../../assets/css/style.css';
 import '../../assets/css/template.css';
-import {ref, watchEffect} from "vue";
+import {onMounted, ref} from "vue";
 import {useRoute} from "vue-router";
-
 
 const route = useRoute();
 const slug = ref(route.params.slug);
@@ -12,8 +11,7 @@ const slug = ref(route.params.slug);
 const artikel = ref(null);
 const loading = ref(false);
 
-watchEffect( async ()=> {
-
+onMounted(async () => {
   try {
     loading.value = true;
     let response = await fetch(`http://127.0.0.1:8000/api/showArticle/${slug.value}`);

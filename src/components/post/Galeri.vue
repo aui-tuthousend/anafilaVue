@@ -3,18 +3,52 @@ import '../../assets/css/artikel.css';
 import '../../assets/css/style.css';
 import '../../assets/css/template.css';
 import Modal from "@/components/modal/Modal.vue";
+import {onMounted, ref} from "vue";
 
+const posts = ref([]);
+const loading = ref(false);
+
+onMounted(async () => {
+  try {
+    loading.value = true;
+    const response = await axios.get(`http://127.0.0.1:8000/api/getPosts`);
+
+    // Asumsikan `image_paths` adalah bagian dari objek di dalam data
+    response.data.forEach(post => {
+      let imagePaths = post.image_paths;
+      imagePaths = JSON.parse(imagePaths);
+
+      if (Array.isArray(imagePaths)) {
+        post.image_urls = imagePaths.map(path => `http://127.0.0.1:8000${path}`);
+      } else {
+        post.image_urls = [`http://127.0.0.1:8000${imagePaths}`];
+      }
+    });
+
+    posts.value = response.data;
+    console.log(posts.value);
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+  } finally {
+    loading.value = false;
+  }
+});
 </script>
 
 <template>
   <Modal/>
+
   <div class="c1">
     <h1 class="tit">Galeri Kegiatan</h1>
-    <div class="can">
+    <div v-if="loading">
+      Loading...
+    </div>
+    <div class="can" v-else>
       <div class="grid-con">
-        <router-link to="/galeri/slug" class="cover">
-          <img class="img" src="" alt="">
-          <p>desc</p>
+        <router-link v-for="p in posts" :to="{name: 'ShowGaleri', params: { slug: p.slug }}" class="cover">
+          <img v-for="(url, index) in p.image_urls.slice(0,1)" :key="index" class="img" :src="url">
+<!--          <img class="img" src="" alt="">-->
+          <p>{{p.title}}</p>
         </router-link>
       </div>
     </div>
