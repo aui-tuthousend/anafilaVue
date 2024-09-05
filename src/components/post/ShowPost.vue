@@ -47,14 +47,12 @@ onMounted(async () => {
       <div class="koper">
         <div class="scroll">
           <img v-for="i in post.image_urls" :src="i" alt="" class="img gmbar">
-<!--          <img class="img gmbar" src="../../images/bsis.jpg">-->
-<!--          <img class="img gmbar" src="../../images/binaan.png">-->
         </div>
       </div>
       <p style="margin-bottom: 1rem;">📷{{post.image_src}} </p>
       <h4>oleh: {{post.author}} </h4>
-      <p style="margin-top: 5px;"> {{post.created_at}}</p>
-      <p class="txt2">{{post.description}}</p>
+      <p style="margin-top: 5px;"> {{ new Date(post.created_at).toLocaleString('en-CA', { hour12: false }) }}</p>
+      <p v-html="post.description" class="txt2"></p>
     </div>
   </div>
 </template>

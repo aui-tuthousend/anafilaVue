@@ -45,7 +45,7 @@ onMounted(async () => {
     </div>
     <div class="can" v-else>
       <div class="grid-con">
-        <router-link v-for="p in posts" :to="{name: 'ShowGaleri', params: { slug: p.slug }}" class="cover">
+        <router-link v-for="p in posts.slice().reverse()" :to="{name: 'ShowGaleri', params: { slug: p.slug }}" class="cover">
           <img v-for="(url, index) in p.image_urls.slice(0,1)" :key="index" class="img" :src="url">
 <!--          <img class="img" src="" alt="">-->
           <p>{{p.title}}</p>
