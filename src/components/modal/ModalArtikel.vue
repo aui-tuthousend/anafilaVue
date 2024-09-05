@@ -49,7 +49,7 @@ const submit = async () => {
     console.error("There was an error uploading the images!", error.response.data);
   } finally {
     isModal.value = false;
-    router.push('/read');
+    location.reload();
   }
 };
 
