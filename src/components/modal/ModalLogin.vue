@@ -1,6 +1,7 @@
 <script setup>
 import {ref, watch} from "vue";
 import {onClickOutside, useMagicKeys} from "@vueuse/core";
+import router from "@/router/index.js";
 const {escape} = useMagicKeys()
 
 
@@ -37,7 +38,7 @@ const login = async () => {
     console.log(response.data);
     axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
     isModal.value = false;
-    await location.reload();
+    await router.push('/')
   } catch (error) {
     console.error("Login gagal", error.response.data);
   }

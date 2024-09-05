@@ -53,7 +53,7 @@ const submit = async () => {
     console.error("There was an error uploading the images!", error.response.data);
   } finally {
     isModal.value = false;
-    location.reload();
+    await router.push('/galeri')
   }
 }
 </script>

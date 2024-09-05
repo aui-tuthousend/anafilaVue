@@ -1,6 +1,7 @@
 <script setup>
 import {ref, watch} from "vue";
 import {onClickOutside, useMagicKeys} from "@vueuse/core";
+import router from "@/router/index.js";
 const {escape} = useMagicKeys()
 
 const isModal = ref(false);
@@ -50,7 +51,7 @@ const submit = async () => {
     console.error("There was an error uploading the images!", error.response.data);
   } finally {
     isModal.value = false;
-    location.reload();
+    await router.push('/read')
   }
 };
 

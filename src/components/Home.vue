@@ -4,6 +4,12 @@ import '../assets/css/style.css';
 import '../assets/css/template.css';
 import {onMounted, ref} from "vue";
 
+const props = defineProps({
+  arti: Object,
+  posts: Object,
+  prog: Object,
+})
+
 const scrollContainer = ref(null)
 
 const scrollLeft = () => {
@@ -14,64 +20,14 @@ const scrollRight = () => {
   scrollContainer.value.scrollLeft += scrollContainer.value.clientWidth
 }
 const user = localStorage.getItem('token');
-const arti = ref([])
-const posts = ref([])
-const prog = ref([])
-console.log(user)
 
-onMounted(async () => {
-  try{
-    const response = await axios.get(`http://127.0.0.1:8000/api/getLatestArticle`);
-    arti.value = response.data.map(art => {
-      return {
-        ...art,
-        image_url: `http://127.0.0.1:8000${art.image_path}`
-      };
-    });
-    console.log(arti.value)
-  } catch (error){
-    console.error('Error fetching article:', error);
-  }
+// console.log(user)
 
-  try{
-    const response = await axios.get(`http://127.0.0.1:8000/api/getProgram`);
-    prog.value = response.data.map(art => {
-      return {
-        ...art,
-        image_url: `http://127.0.0.1:8000${art.image_path}`
-      };
-    });
-    console.log(prog.value)
-  } catch (error){
-    console.error('Error fetching article:', error);
-  }
 
-  try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/getLatestPost`);
-
-    response.data.forEach(post => {
-      let imagePaths = post.image_paths;
-      imagePaths = JSON.parse(imagePaths);
-
-      if (Array.isArray(imagePaths)) {
-        post.image_urls = imagePaths.map(path => `http://127.0.0.1:8000${path}`);
-      } else {
-        post.image_urls = [`http://127.0.0.1:8000${imagePaths}`];
-      }
-    });
-
-    posts.value = response.data;
-    console.log(posts.value);
-  } catch (error) {
-    console.error('Error fetching posts:', error);
-  }
-
-});
 
 </script>
 
 <template>
-  <p>{{user}}</p>
   <div class="c1 row-sb">
     <div class="col c1-1">
       <h1>Mari bersama membantu mereka meraih cita-cita!</h1>
