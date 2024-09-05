@@ -2,7 +2,7 @@
 import '../assets/css/home.css';
 import '../assets/css/style.css';
 import '../assets/css/template.css';
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 
 const scrollContainer = ref(null)
 
@@ -13,6 +13,59 @@ const scrollLeft = () => {
 const scrollRight = () => {
   scrollContainer.value.scrollLeft += scrollContainer.value.clientWidth
 }
+
+const arti = ref([])
+const posts = ref([])
+const prog = ref([])
+
+onMounted(async () => {
+  try{
+    const response = await axios.get(`http://127.0.0.1:8000/api/getLatestArticle`);
+    arti.value = response.data.map(art => {
+      return {
+        ...art,
+        image_url: `http://127.0.0.1:8000${art.image_path}`
+      };
+    });
+    console.log(arti.value)
+  } catch (error){
+    console.error('Error fetching article:', error);
+  }
+
+  try{
+    const response = await axios.get(`http://127.0.0.1:8000/api/getProgram`);
+    prog.value = response.data.map(art => {
+      return {
+        ...art,
+        image_url: `http://127.0.0.1:8000${art.image_path}`
+      };
+    });
+    console.log(prog.value)
+  } catch (error){
+    console.error('Error fetching article:', error);
+  }
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/api/getLatestPost`);
+
+    response.data.forEach(post => {
+      let imagePaths = post.image_paths;
+      imagePaths = JSON.parse(imagePaths);
+
+      if (Array.isArray(imagePaths)) {
+        post.image_urls = imagePaths.map(path => `http://127.0.0.1:8000${path}`);
+      } else {
+        post.image_urls = [`http://127.0.0.1:8000${imagePaths}`];
+      }
+    });
+
+    posts.value = response.data;
+    console.log(posts.value);
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+  }
+
+});
 
 </script>
 
@@ -63,44 +116,12 @@ const scrollRight = () => {
       <button @click="scrollLeft" class="scroll-btn left-btn">&larr;</button>
       <div class="c3-1" ref="scrollContainer">
 
-        <div class="block col">
+        <div class="block col" v-for="p in prog">
           <div class="coverr">
-            <img src="" alt="" class="img program">
+            <img :src="p.image_url" alt="" class="img program">
           </div>
-          <h1 style="width: 230px;">Beasiswa Pendidikan</h1>
-          <p>Diberikan untuk membantu anak-anak menyelesaikan pendidikan akademiknya mulai dari jenjang TK hingga SMA.</p>
-        </div>
-
-        <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h1 style="width: 230px;">Pendidikan Al-Qur'an</h1>
-          <p>Mendirikan lembaga pendidikan Al Qur'an mulai dari TPQ di sore hari hingga kelas tahfidz setiap selesai shalat subuh. Awal tahun 2024 juga telah dibuka kelas TPQ dewasa yang dilaksanakan setiap sepekan sekali.</p>
-        </div>
-
-        <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h1 style="width: 230px;">Safari Dakwah</h1>
-          <p>Kajian subuh di mushollah dan masjid sekitar Pagesangan dengan menitikberatkan materi-materi tafsir surah Al Fatihah, fiqh, dan hadist.</p>
-        </div>
-
-        <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h1 style="width: 230px;">Kampung Aji</h1>
-          <p>Program dakwah di kampung kampung guna mengentaskan buta huruf Al-Qur'an dan memberikan pemahaman keagamaan di kalangan mustahik.</p>
-        </div>
-
-        <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h1 style="width: 230px;">Pengkaderan Guru Al-Qur'an</h1>
-          <p>Pendidikan guru Al Qur'an dengan menggunakan metode Ummi hingga mendapatkan syahadah untuk mengajar ngaji.</p>
+          <h1 style="width: 230px;">{{p.title}}</h1>
+          <p>{{p.description}}</p>
         </div>
 
       </div>
@@ -161,40 +182,14 @@ const scrollRight = () => {
       <button @click="scrollLeft" class="scroll-btn left-btn">&larr;</button>
       <div class="c3-1" ref="scrollContainer">
 
-        <div class="block col">
-          <router-link to="/read/slug" class="no-hover">
+        <div class="block col" v-for="p in posts">
+          <router-link :to="{name: 'ShowGaleri', params: { slug: p.slug }}" class="no-hover">
             <div class="coverr">
-              <img src="" alt="" class="img program">
+              <img v-for="(url, index) in p.image_urls.slice(0,1)" :key="index" class="img program" :src="url">
             </div>
-            <h3 style="width: 230px; font-weight: bold;">Romadhon Camp di yayasan annafilah</h3>
-            <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
+            <h3 style="width: 230px; font-weight: bold;">{{p.title}}</h3>
+            <p>{{p.description.substring(0,59)+"..."}}</p>
           </router-link>
-        </div>
-
-        <div class="block col">
-          <router-link to="/read/slug" class="no-hover">
-            <div class="coverr">
-              <img src="" alt="" class="img program">
-            </div>
-            <h3 style="width: 230px; font-weight: bold;">Kampung dakwah di desa terpencil</h3>
-            <p>acara bulanan kami selalu atau awal bulan...</p>
-          </router-link>
-        </div>
-
-        <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h3 style="width: 230px; font-weight: bold;">Tasmi' Qur'an 30 juz</h3>
-          <p>salah satu anak didik kami si fulan alhamdulilah telah mengkhatamkan...</p>
-        </div>
-
-        <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h3 style="width: 230px; font-weight: bold;">Beasiswa untuk si kecil</h3>
-          <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
         </div>
 
       </div>
@@ -286,56 +281,15 @@ const scrollRight = () => {
       <button @click="scrollLeft" class="scroll-btn left-btn">&larr;</button>
       <div class="c3-1" ref="scrollContainer">
 
-        <div class="block col">
-          <router-link to="/read/slug" class="no-hover">
+        <div class="block col" v-for="a in arti">
+          <router-link :to="{name: 'ShowArticle', params: { slug: a.slug }}" class="no-hover">
             <div class="coverr">
-              <img src="" alt="" class="img program">
+              <img :src="a.image_url" :alt="a.image_desc" class="img program">
             </div>
-            <h3 style="width: 230px; font-weight: bold;">Romadhon Camp di yayasan annafilah</h3>
-            <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
+            <p >{{a.category}}</p>
+            <h3 style="width: 230px; font-weight: bold;">{{a.title}}</h3>
+            <p>{{a.description.substring(0,30)+"..."}}</p>
           </router-link>
-        </div>
-
-        <div class="block col">
-          <router-link to="/read/slug" class="no-hover">
-            <div class="coverr">
-              <img src="" alt="" class="img program">
-            </div>
-            <h3 style="width: 230px; font-weight: bold;">Kampung dakwah di desa terpencil</h3>
-            <p>acara bulanan kami selalu atau awal bulan...</p>
-          </router-link>
-        </div>
-
-        <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h3 style="width: 230px; font-weight: bold;">Tasmi' Qur'an 30 juz</h3>
-          <p>salah satu anak didik kami si fulan alhamdulilah telah mengkhatamkan...</p>
-        </div>
-
-        <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h3 style="width: 230px; font-weight: bold;">Beasiswa untuk si kecil</h3>
-          <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
-        </div>
-
-        <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h3 style="width: 230px; font-weight: bold;">Beasiswa untuk si kecil</h3>
-          <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
-        </div>
-
-        <div class="block col">
-          <div class="coverr">
-            <img src="" alt="" class="img program">
-          </div>
-          <h3 style="width: 230px; font-weight: bold;">Beasiswa untuk si kecil</h3>
-          <p>dalam rangka memperingati kedatangan bulan romadhon kami mengadakan...</p>
         </div>
 
       </div>
