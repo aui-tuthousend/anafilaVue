@@ -5,6 +5,7 @@ import '../../assets/css/template.css';
 import ModalArtikel from "@/components/modal/ModalArtikel.vue";
 import {onMounted, ref} from "vue";
 
+const token = localStorage.getItem('token');
 const artikel = ref([]);
 const loading = ref(false);
 
@@ -29,7 +30,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <ModalArtikel/>
+  <ModalArtikel v-if="token!==null"/>
 
   <div class="c1" >
     <h1 class="tit">Artikel Terbaru Kami</h1>

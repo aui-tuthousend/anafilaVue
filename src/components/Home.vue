@@ -13,10 +13,11 @@ const scrollLeft = () => {
 const scrollRight = () => {
   scrollContainer.value.scrollLeft += scrollContainer.value.clientWidth
 }
-
+const user = localStorage.getItem('token');
 const arti = ref([])
 const posts = ref([])
 const prog = ref([])
+console.log(user)
 
 onMounted(async () => {
   try{
@@ -70,17 +71,18 @@ onMounted(async () => {
 </script>
 
 <template>
+  <p>{{user}}</p>
   <div class="c1 row-sb">
     <div class="col c1-1">
       <h1>Mari bersama membantu mereka meraih cita-cita!</h1>
       <p>“Sesungguhnya Allah mengangkat dengan kitab Al-Qur’an ini beberapa kaum dan juga dengan kitab Al-Qur’an ini Allah merendahkan yang lainnya.”
         <br>(HR. Muslim)
       </p>
-      <a href="">
+      <router-link to="/profile">
         <button class="but">
           <h4>Tentang Kami</h4>
         </button>
-      </a>
+      </router-link>
       <div class="c1-2 row">
         <div class="row-c">
           <img src="../images/png/brain.png" width="40" height="40">

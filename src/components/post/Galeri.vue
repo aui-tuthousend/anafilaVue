@@ -5,6 +5,8 @@ import '../../assets/css/template.css';
 import Modal from "@/components/modal/Modal.vue";
 import {onMounted, ref} from "vue";
 
+
+const token = localStorage.getItem('token');
 const posts = ref([]);
 const loading = ref(false);
 
@@ -36,7 +38,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Modal/>
+  <Modal v-if="token!==null"/>
 
   <div class="c1">
     <h1 class="tit">Galeri Kegiatan</h1>

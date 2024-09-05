@@ -1,6 +1,8 @@
 <script setup>
 import '../assets/css/header.css';
 import '../assets/css/style.css';
+import ModalLogin from "@/components/modal/ModalLogin.vue";
+import router from "@/router/index.js";
 function openNav() {
   document.getElementById("sidebar").style.width = "250px";
 }
@@ -8,6 +10,30 @@ function openNav() {
 function closeNav() {
   document.getElementById("sidebar").style.width = "0";
 }
+
+const token = localStorage.getItem('token');
+
+const logout = async () => {
+  try {
+    const response = await axios.post(
+        "http://127.0.0.1:8000/api/logout",
+        {},
+        {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
+    );
+    console.log('respons: ',response);
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    router.push("/");
+
+  } catch (error) {
+    console.error("Error during logout:", error);
+  }
+};
 </script>
 
 <template>
@@ -26,6 +52,10 @@ function closeNav() {
       <router-link to="/read"><h4>Artikel</h4></router-link>
       <router-link to="/galeri"><h4>Galeri</h4></router-link>
       <router-link :to="{path: '/', hash: '#regis'}">Jadi Donatur</router-link>
+      <router-link to="" v-if="token===null">
+        <ModalLogin/>
+      </router-link>
+      <router-link to="" v-else @click="logout">logout</router-link>
     </div>
   </header>
 
@@ -37,6 +67,10 @@ function closeNav() {
     <router-link to="/read"><h4>Artikel</h4></router-link>
     <router-link to="/galeri"><h4>Galeri</h4></router-link>
     <router-link :to="{path: '/', hash: '#regis'}">Jadi Donatur</router-link>
+    <router-link to="" v-if="token===null">
+      <ModalLogin/>
+    </router-link>
+    <router-link to="" v-else @click="logout">logout</router-link>
   </div>
   <span class="openbtn" @click="openNav()">&#9776; Menu</span>
 

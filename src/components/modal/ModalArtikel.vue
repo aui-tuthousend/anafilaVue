@@ -1,13 +1,13 @@
 <script setup>
 import {ref, watch} from "vue";
 import {onClickOutside, useMagicKeys} from "@vueuse/core";
-import router from "@/router/index.js";
 const {escape} = useMagicKeys()
 
 const isModal = ref(false);
 const modal = ref(null);
 
 const selectedFile = ref([]);
+const token = localStorage.getItem('token');
 
 const judul = ref('');
 const kategori = ref('');
@@ -42,6 +42,7 @@ const submit = async () => {
     const response = await axios.post("http://127.0.0.1:8000/api/storeArticle", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        "Authorization": `Bearer ${token}`,
       },
     });
     console.log(response.data);

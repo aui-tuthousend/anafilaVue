@@ -9,7 +9,7 @@ const isModal = ref(false);
 const modal = ref(null);
 
 const selectedFiles = ref([]);
-
+const token = localStorage.getItem('token');
   const judul = ref('');
   const deskripsi = ref('');
   const potoDesc = ref('');
@@ -45,6 +45,7 @@ const submit = async () => {
     const response = await axios.post("http://127.0.0.1:8000/api/storePost", formData,    {
       headers: {
         "Content-Type": "multipart/form-data",
+        "Authorization": `Bearer ${token}`,
       },
     });
     console.log(response.data);
