@@ -34,13 +34,13 @@ onMounted(async () => {
   </div>
   <div class="A1 col" v-if="artikel">
     <div>
-      <p>{{artikel.category}}</p>
+      <p >{{artikel.category}}</p>
       <h1 class="tit">{{ artikel.title }}</h1>
-      <br>
+      <br/>
       <img class="img gmbar" :src="artikel.image_url" alt="Article Image">
       <h4>oleh: author</h4>
       <p style="margin-top: 5px;">tanggal</p>
-      <p class="txt2">{{ artikel.description }}</p>
+      <p v-html="artikel.description" class="txt2"></p>
     </div>
   </div>
   <div v-else>
