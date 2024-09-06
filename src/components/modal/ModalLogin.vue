@@ -32,7 +32,7 @@ const login = async () => {
   formData.append('password', password.value)
 
   try {
-    const response = await axios.post("http://127.0.0.1:8000/api/login", formData);
+    const response = await axios.post("https://api.annafilah.id/api/login", formData);
     localStorage.setItem('token', response.data.token)
     localStorage.setItem('user', response.data.user)
     console.log(response.data);

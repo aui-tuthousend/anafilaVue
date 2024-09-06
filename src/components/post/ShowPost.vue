@@ -14,14 +14,14 @@ const loading = ref(false);
 onMounted(async () => {
   try {
     loading.value = true;
-    const response = await axios.get(`http://127.0.0.1:8000/api/showPost/${slug.value}`);
+    const response = await axios.get(`https://api.annafilah.id/api/showPost/${slug.value}`);
 
     let imagePaths = response.data.image_paths;
     imagePaths = JSON.parse(imagePaths);
     if (Array.isArray(imagePaths)) {
-      response.data.image_urls = imagePaths.map(path => `http://127.0.0.1:8000${path}`);
+      response.data.image_urls = imagePaths.map(path => `https://api.annafilah.id${path}`);
     } else {
-      response.data.image_urls = [`http://127.0.0.1:8000${imagePaths}`];
+      response.data.image_urls = [`https://api.annafilah.id${imagePaths}`];
     }
 
     post.value = response.data;

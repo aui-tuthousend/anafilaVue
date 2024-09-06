@@ -10,11 +10,11 @@ const posts = ref([])
 const prog = ref([])
 onMounted(async () => {
   try{
-    const response = await axios.get(`http://127.0.0.1:8000/api/getLatestArticle`);
+    const response = await axios.get(`https://api.annafilah.id/api/getLatestArticle`);
     arti.value = response.data.map(art => {
       return {
         ...art,
-        image_url: `http://127.0.0.1:8000${art.image_path}`
+        image_url: `https://api.annafilah.id${art.image_path}`
       };
     });
     console.log(arti.value)
@@ -23,11 +23,11 @@ onMounted(async () => {
   }
 
   try{
-    const response = await axios.get(`http://127.0.0.1:8000/api/getProgram`);
+    const response = await axios.get(`https://api.annafilah.id/api/getProgram`);
     prog.value = response.data.map(art => {
       return {
         ...art,
-        image_url: `http://127.0.0.1:8000${art.image_path}`
+        image_url: `https://api.annafilah.id${art.image_path}`
       };
     });
     console.log(prog.value)
@@ -36,16 +36,16 @@ onMounted(async () => {
   }
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/getLatestPost`);
+    const response = await axios.get(`https://api.annafilah.id/api/getLatestPost`);
 
     response.data.forEach(post => {
       let imagePaths = post.image_paths;
       imagePaths = JSON.parse(imagePaths);
 
       if (Array.isArray(imagePaths)) {
-        post.image_urls = imagePaths.map(path => `http://127.0.0.1:8000${path}`);
+        post.image_urls = imagePaths.map(path => `https://api.annafilah.id${path}`);
       } else {
-        post.image_urls = [`http://127.0.0.1:8000${imagePaths}`];
+        post.image_urls = [`https://api.annafilah.id${imagePaths}`];
       }
     });
 

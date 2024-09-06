@@ -40,7 +40,7 @@ const submit = async () => {
   formData.append("image", selectedFile.value);
 
   try {
-    const response = await axios.post("http://127.0.0.1:8000/api/storeArticle", formData, {
+    const response = await axios.post("https://api.annafilah.id/api/storeProgram", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         "Authorization": `Bearer ${token}`,

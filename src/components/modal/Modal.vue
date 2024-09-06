@@ -42,7 +42,7 @@ const submit = async () => {
   }
 
   try {
-    const response = await axios.post("http://127.0.0.1:8000/api/storePost", formData,    {
+    const response = await axios.post("https://api.annafilah.id/api/storePost", formData,    {
       headers: {
         "Content-Type": "multipart/form-data",
         "Authorization": `Bearer ${token}`,

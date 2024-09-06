@@ -14,9 +14,9 @@ const loading = ref(false);
 onMounted(async () => {
   try {
     loading.value = true;
-    let response = await fetch(`http://127.0.0.1:8000/api/showArticle/${slug.value}`);
+    let response = await fetch(`https://api.annafilah.id/api/showArticle/${slug.value}`);
     artikel.value = await response.json();
-    artikel.value.image_url = `http://127.0.0.1:8000${artikel.value.image_path}`;
+    artikel.value.image_url = `https://api.annafilah.id${artikel.value.image_path}`;
     console.log(artikel.value)
   } catch (error) {
     console.error('Error fetching article:', error);

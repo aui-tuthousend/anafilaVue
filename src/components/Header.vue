@@ -16,7 +16,7 @@ const token = localStorage.getItem('token');
 const logout = async () => {
   try {
     const response = await axios.post(
-        "http://127.0.0.1:8000/api/logout",
+        "https://api.annafilah.id/api/logout",
         {},
         {
           headers: {

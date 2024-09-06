@@ -12,11 +12,11 @@ const loading = ref(false);
 onMounted(async () => {
   try{
     loading.value = true;
-    const response = await axios.get(`http://127.0.0.1:8000/api/getArticles`);
+    const response = await axios.get(`https://api.annafilah.id/api/getArticles`);
     artikel.value = response.data.map(art => {
       return {
         ...art,
-        image_url: `http://127.0.0.1:8000${art.image_path}`
+        image_url: `https://api.annafilah.id${art.image_path}`
       };
     });
     console.log(artikel.value)

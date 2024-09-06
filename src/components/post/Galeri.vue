@@ -13,7 +13,7 @@ const loading = ref(false);
 onMounted(async () => {
   try {
     loading.value = true;
-    const response = await axios.get(`http://127.0.0.1:8000/api/getPosts`);
+    const response = await axios.get(`https://api.annafilah.id/api/getPosts`);
 
     // Asumsikan `image_paths` adalah bagian dari objek di dalam data
     response.data.forEach(post => {
@@ -21,9 +21,9 @@ onMounted(async () => {
       imagePaths = JSON.parse(imagePaths);
 
       if (Array.isArray(imagePaths)) {
-        post.image_urls = imagePaths.map(path => `http://127.0.0.1:8000${path}`);
+        post.image_urls = imagePaths.map(path => `https://api.annafilah.id${path}`);
       } else {
-        post.image_urls = [`http://127.0.0.1:8000${imagePaths}`];
+        post.image_urls = [`https://api.annafilah.id${imagePaths}`];
       }
     });
 
