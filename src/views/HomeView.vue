@@ -17,7 +17,7 @@ onMounted(async () => {
         image_url: `https://api.annafilah.id${art.image_path}`
       };
     });
-    console.log(arti.value)
+    // console.log(arti.value)
   } catch (error){
     console.error('Error fetching article:', error);
   }
@@ -30,7 +30,7 @@ onMounted(async () => {
         image_url: `https://api.annafilah.id${art.image_path}`
       };
     });
-    console.log(prog.value)
+    // console.log(prog.value)
   } catch (error){
     console.error('Error fetching article:', error);
   }
@@ -50,7 +50,7 @@ onMounted(async () => {
     });
 
     posts.value = response.data;
-    console.log(posts.value);
+    // console.log(posts.value);
   } catch (error) {
     console.error('Error fetching posts:', error);
   }

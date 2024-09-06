@@ -19,7 +19,7 @@ onMounted(async () => {
         image_url: `https://api.annafilah.id${art.image_path}`
       };
     });
-    console.log(artikel.value)
+    // console.log(artikel.value)
   } catch (error){
     console.error('Error fetching article:', error);
   } finally {

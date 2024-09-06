@@ -52,10 +52,10 @@ const logout = async () => {
       <router-link to="/read"><h4>Artikel</h4></router-link>
       <router-link to="/galeri"><h4>Galeri</h4></router-link>
       <router-link :to="{path: '/', hash: '#regis'}">Jadi Donatur</router-link>
+      <router-link to="" v-if="token===null">
         <ModalLogin/>
-<!--      <router-link to="" v-if="token===null">-->
-<!--      </router-link>-->
-<!--      <router-link to="" v-else @click="logout">logout</router-link>-->
+      </router-link>
+      <router-link to="" v-else @click="logout">logout</router-link>
     </div>
   </header>
 

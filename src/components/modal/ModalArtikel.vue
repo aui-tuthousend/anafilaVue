@@ -40,7 +40,7 @@ const submit = async () => {
   formData.append("image", selectedFile.value);
 
   try {
-    const response = await axios.post("https://api.annafilah.id/api/storeProgram", formData, {
+    const response = await axios.post("https://api.annafilah.id/api/storeArticle", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         "Authorization": `Bearer ${token}`,
@@ -50,6 +50,12 @@ const submit = async () => {
   } catch (error) {
     console.error("There was an error uploading the images!", error.response.data);
   } finally {
+
+    judul.value = '';
+    kategori.value = '';
+    deskripsi.value = '';
+    potoDesc.value = '';
+    potoSrc.value = '';
     isModal.value = false;
     await router.push('/read')
   }
@@ -85,7 +91,7 @@ const submit = async () => {
           </div>
 
           <div class="col">
-            <label for="image">Foto (tunggal)</label>
+            <label for="image">Foto max 2MB(tunggal)</label>
             <input type="file" @change="handleFileChange" />
           </div>
 

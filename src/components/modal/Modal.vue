@@ -52,6 +52,11 @@ const submit = async () => {
   } catch (error) {
     console.error("There was an error uploading the images!", error.response.data);
   } finally {
+    judul.value = '';
+    deskripsi.value = '';
+    potoDesc.value = '';
+    potoSrc.value = '';
+    author.value = '';
     isModal.value = false;
     await router.push('/galeri')
   }
@@ -77,7 +82,7 @@ const submit = async () => {
           </div>
 
           <div class="col">
-            <label for="image">Foto-foto (multiple)</label>
+            <label for="image">Foto-foto max per-foto 2MB(multiple)</label>
             <input type="file" multiple @change="handleFileChange" />
           </div>
 

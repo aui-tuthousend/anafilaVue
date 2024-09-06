@@ -28,7 +28,7 @@ onMounted(async () => {
     });
 
     posts.value = response.data;
-    console.log(posts.value);
+    // console.log(posts.value);
   } catch (error) {
     console.error('Error fetching posts:', error);
   } finally {
