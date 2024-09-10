@@ -29,6 +29,7 @@ main{
   position: absolute;
   top: 0rem;
   left: 0rem;
+  background: white;
 }
 
 @media (min-width: 1024px) {
