@@ -27,7 +27,7 @@ onMounted(async () => {
     post.value = response.data;
 
 
-    console.log(post.value)
+    // console.log(post.value)
   } catch (error) {
     console.error('Error fetching article:', error);
   }finally {

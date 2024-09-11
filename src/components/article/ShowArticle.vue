@@ -17,7 +17,7 @@ onMounted(async () => {
     let response = await fetch(`https://api.annafilah.id/api/showArticle/${slug.value}`);
     artikel.value = await response.json();
     artikel.value.image_url = `https://api.annafilah.id${artikel.value.image_path}`;
-    console.log(artikel.value)
+    // console.log(artikel.value)
   } catch (error) {
     console.error('Error fetching article:', error);
   }finally {
@@ -38,8 +38,7 @@ onMounted(async () => {
       <h1 class="tit">{{ artikel.title }}</h1>
       <br/>
       <img class="img gmbar" :src="artikel.image_url" alt="Article Image">
-      <h4>oleh: author</h4>
-      <p style="margin-top: 5px;">tanggal</p>
+      <p> {{ new Date(artikel.created_at).toLocaleString('en-CA', { hour12: false }) }}</p>
       <p v-html="artikel.description" class="txt2"></p>
     </div>
   </div>

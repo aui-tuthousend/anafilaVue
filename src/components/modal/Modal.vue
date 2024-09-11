@@ -58,7 +58,7 @@ const submit = async () => {
     potoSrc.value = '';
     author.value = '';
     isModal.value = false;
-    await router.push('/galeri')
+    await router.push('/')
   }
 }
 </script>

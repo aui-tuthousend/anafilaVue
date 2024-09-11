@@ -57,7 +57,7 @@ const submit = async () => {
     potoDesc.value = '';
     potoSrc.value = '';
     isModal.value = false;
-    await router.push('/read')
+    await router.push('/')
   }
 };
 
