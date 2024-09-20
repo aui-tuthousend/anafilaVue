@@ -146,7 +146,7 @@ const user = localStorage.getItem('token');
               <img v-for="(url, index) in p.image_urls.slice(0,1)" :key="index" class="img program" :src="url">
             </div>
             <h3 style="width: 230px; font-weight: bold;">{{p.title}}</h3>
-            <p>{{p.description.substring(0,59)+"..."}}</p>
+            <p v-html="p.description.substring(0,59)">...</p>
           </router-link>
         </div>
 
@@ -246,7 +246,7 @@ const user = localStorage.getItem('token');
             </div>
             <p >{{a.category}}</p>
             <h3 style="width: 230px; font-weight: bold;">{{a.title}}</h3>
-            <p>{{a.description.substring(0,30)+"..."}}</p>
+            <p v-html="a.description.substring(0,30)+'...'"></p>
           </router-link>
         </div>
 
