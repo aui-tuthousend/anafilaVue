@@ -122,9 +122,12 @@
     width: 50%;
     height: 5rem;
     background: black;
-    color: white; !important;
     border-radius: 1rem;
     padding: 0 2rem 0 2rem;
+
+    h4, p {
+        color: white;
+    }
 }
 
 

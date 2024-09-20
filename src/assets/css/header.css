@@ -83,4 +83,10 @@ body {
     .openbtn {
         display: block;
     }
+
+    .sidebar{
+        a, h4{
+            color: whitesmoke;
+        }
+    }
 }
