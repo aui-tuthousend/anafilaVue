@@ -1,4 +1,5 @@
 .tit{
+    width: 100%;
     margin-left: 5px;
     font-size: 2rem;
 }
@@ -43,6 +44,13 @@
 }
 
 @media (max-width: 800px) {
+    .tit{
+        width: 100%;
+        margin-left: 5px;
+        font-size: 2rem;
+    }
+
+
     .grid-con{
         width: 100%;
         display: flex;

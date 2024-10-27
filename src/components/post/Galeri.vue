@@ -5,7 +5,6 @@ import '../../assets/css/template.css';
 import Modal from "@/components/modal/Modal.vue";
 import {onMounted, ref} from "vue";
 
-
 const token = localStorage.getItem('token');
 const posts = ref([]);
 const loading = ref(false);
